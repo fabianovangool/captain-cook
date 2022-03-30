@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <div (click)="handleClick()" class="container">
+    <img src="assets/images/hamburger.svg" />
+  </div>
+  <ul [ngClass]="{ open: show }">
+    <li *ngFor="let dropdownItem of dropdownItems">
+      <a [routerLink]="dropdownItem.url">{{ dropdownItem.name }}</a>
+    </li>
+  </ul>
+  <div (click)="handleClick()" [ngClass]="{ close: show }"></div>
+</div>

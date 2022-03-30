@@ -1,0 +1,27 @@
+nav {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #696969;
+  background-color: #dddddd;
+  display: flex;
+  height: 100px;
+  width: 100vw;
+  top: 0;
+}
+
+div {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  background-color: rgb(255, 219, 58);
+  border: 1px solid black;
+  border-radius: 14px;
+  color: #696969;
+  font-family: "Roboto";
+  margin-left: 50px;
+  font-size: 50px;
+  padding: 0 10px;
+}

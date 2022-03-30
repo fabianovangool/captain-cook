@@ -1,0 +1,9 @@
+<div class="card">
+	<div class="wrapper">
+		<img src="assets/images/{{image}}">
+		<p class="name"><ng-content></ng-content></p>
+	</div>
+	<div class="wrapper-right"></div>
+	<p class="portion-size">{{size}}</p>
+	<app-button (click)="onClick(id)">x</app-button>
+</div>
