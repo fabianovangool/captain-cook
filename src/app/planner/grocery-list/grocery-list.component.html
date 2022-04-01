@@ -1,1 +1,12 @@
-<p>grocery-list works!</p>
+<div class="container">
+  <h2 class="title">List</h2>
+  <ul *ngFor="let ingredientsMeal of ingredientsList">
+    <ul class="total" *ngFor="let ingredients of ingredientsMeal">
+      <div class="amount-unit-wrapper">
+        <li>{{ ingredients.amount }}</li>
+        <li>{{ ingredients.unit }}</li>
+      </div>
+      <li>{{ ingredients.name }}</li>
+    </ul>
+  </ul>
+</div>
