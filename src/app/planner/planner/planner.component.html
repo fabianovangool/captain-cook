@@ -1,5 +1,8 @@
 <div class="container">
   <div>
+    <div class="add">
+      <app-button type="secondary" (click)="triggerModal()">+</app-button>
+    </div>
     <app-card
       (answer)="removeMeal($event)"
       [id]="meal.id"
@@ -8,11 +11,21 @@
       *ngFor="let meal of meals"
       >{{ meal.name }}</app-card
     >
-    <div class="add">
-      <app-button (click)="addMeal()">+</app-button>
-    </div>
   </div>
   <app-aside class="aside">
     <app-grocery-list class="list"></app-grocery-list>
   </app-aside>
+</div>
+<div *ngIf="isModalOpen">
+  <div class="backdrop" (click)="triggerModal()"></div>
+  <app-modal>
+    <app-button (click)="triggerModal()">x</app-button>
+    <div class="select">
+      <select>
+        <option>Ooh yes i want to add...</option>
+        <option [id]="meal.id" *ngFor="let meal of meals">{{ meal.name }}</option>
+      </select>
+      <app-button>+</app-button>
+    </div>
+  </app-modal>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PlannedService } from "src/app/shared/services/planned.service";
+import { ModalService } from "src/app/shared/services/modal.service";
 
 @Component({
   selector: "app-planner",
@@ -15,13 +16,19 @@ export class PlannerComponent implements OnInit {
     ingredients: { name: string; unit: string; amount: number }[];
   }[] = [];
 
-  constructor(private plannedService: PlannedService) {}
+  isModalOpen: boolean = false;
+
+  constructor(private plannedService: PlannedService, private modalService: ModalService) {}
 
   ngOnInit() {
     this.meals = this.plannedService.getMeals();
     this.plannedService.mealsChange.subscribe((value) => {
       this.meals = value;
     });
+    this.modalService.modalTriggered.subscribe((value) => {
+      this.isModalOpen = value;
+    });
+    this.modalService.triggerModal();
   }
 
   addMeal() {
@@ -29,5 +36,9 @@ export class PlannerComponent implements OnInit {
   }
   removeMeal(id: number) {
     this.plannedService.removeMeal(id);
+  }
+
+  triggerModal() {
+    this.modalService.triggerModal();
   }
 }

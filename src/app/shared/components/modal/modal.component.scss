@@ -1,0 +1,13 @@
+.box {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 4px dotted blue;
+  height: 20vh;
+  width: 50vw;
+  z-index: 10;
+}

@@ -215,7 +215,7 @@ export class PlannedService {
   }
 
   addMeal() {
-    this.meals = [...this.meals, this.extraMeal];
+    this.meals = [this.extraMeal, ...this.meals];
     this.mealsChange.next(this.meals);
     this.getIngredientList();
   }
