@@ -12,12 +12,12 @@ export class PlannerComponent implements OnInit {
     name: string;
     portionSize: string;
     image: string;
-    ingredients: { name: string; unit: string; amount: string }[];
+    ingredients: { name: string; unit: string; amount: number }[];
   }[] = [];
 
   constructor(private plannedService: PlannedService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.meals = this.plannedService.getMeals();
     this.plannedService.mealsChange.subscribe((value) => {
       this.meals = value;

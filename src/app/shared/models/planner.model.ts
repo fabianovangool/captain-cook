@@ -4,6 +4,6 @@ export class Planner {
     public name: string,
     public portionSize: string,
     public image: string,
-    public ingredients: { name: string; unit: string; amount: string }[],
+    public ingredients: { name: string; unit: string; amount: number }[],
   ) {}
 }

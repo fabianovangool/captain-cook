@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import { GroceryList } from "../models/grocerylist.model";
 import { Planner } from "../models/planner.model";
 
 @Injectable({
@@ -16,22 +17,22 @@ export class PlannedService {
         {
           name: "Linguine",
           unit: "grams",
-          amount: "300",
+          amount: 300,
         },
         {
           name: "Guanciale",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Pecorino",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Eggs",
           unit: "whole",
-          amount: "3",
+          amount: 3,
         },
       ],
     },
@@ -44,22 +45,22 @@ export class PlannedService {
         {
           name: "Garlic",
           unit: "cloves",
-          amount: "3",
+          amount: 3,
         },
         {
           name: "Tomatoes",
           unit: "whole",
-          amount: "2",
+          amount: 2,
         },
         {
           name: "Tarragon",
           unit: "grams",
-          amount: "20",
+          amount: 20,
         },
         {
           name: "Eggs",
           unit: "whole",
-          amount: "4",
+          amount: 4,
         },
       ],
     },
@@ -72,22 +73,22 @@ export class PlannedService {
         {
           name: "Chickpeas",
           unit: "cans",
-          amount: "2",
+          amount: 2,
         },
         {
           name: "Coconut milk",
           unit: "cans",
-          amount: "1",
+          amount: 1,
         },
         {
           name: "Ginger",
           unit: "piece",
-          amount: "1",
+          amount: 1,
         },
         {
           name: "Fennel seeds",
           unit: "grams",
-          amount: "10",
+          amount: 10,
         },
       ],
     },
@@ -100,22 +101,22 @@ export class PlannedService {
         {
           name: "Linguine",
           unit: "grams",
-          amount: "300",
+          amount: 300,
         },
         {
           name: "Guanciale",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Pecorino",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Eggs",
           unit: "whole",
-          amount: "3",
+          amount: 3,
         },
       ],
     },
@@ -128,22 +129,22 @@ export class PlannedService {
         {
           name: "Linguine",
           unit: "grams",
-          amount: "300",
+          amount: 300,
         },
         {
           name: "Guanciale",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Pecorino",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Eggs",
           unit: "whole",
-          amount: "3",
+          amount: 3,
         },
       ],
     },
@@ -156,22 +157,22 @@ export class PlannedService {
         {
           name: "Linguine",
           unit: "grams",
-          amount: "300",
+          amount: 300,
         },
         {
           name: "Guanciale",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Pecorino",
           unit: "grams",
-          amount: "100",
+          amount: 100,
         },
         {
           name: "Eggs",
           unit: "whole",
-          amount: "3",
+          amount: 3,
         },
       ],
     },
@@ -186,40 +187,28 @@ export class PlannedService {
       {
         name: "Linguine",
         unit: "grams",
-        amount: "300",
+        amount: 300,
       },
       {
         name: "Guanciale",
         unit: "grams",
-        amount: "100",
+        amount: 100,
       },
       {
         name: "Pecorino",
         unit: "grams",
-        amount: "100",
+        amount: 100,
       },
       {
         name: "Eggs",
         unit: "whole",
-        amount: "3",
+        amount: 3,
       },
     ],
   };
 
   mealsChange: Subject<Planner[]> = new Subject<Planner[]>();
-  // ingredientsChange: Subject<
-  //   {
-  //     name: string;
-  //     unit: string;
-  //     amount: string;
-  //   }[]
-  // > = new Subject<
-  //   {
-  //     name: string;
-  //     unit: string;
-  //     amount: string;
-  //   }[]
-  // >();
+  ingredientsChange: Subject<GroceryList[]> = new Subject<GroceryList[]>();
 
   getMeals() {
     return this.meals;
@@ -228,15 +217,32 @@ export class PlannedService {
   addMeal() {
     this.meals = [...this.meals, this.extraMeal];
     this.mealsChange.next(this.meals);
+    this.getIngredientList();
   }
 
   removeMeal(id: number) {
     this.meals = this.meals.filter((meal) => meal.id !== id);
     this.mealsChange.next(this.meals);
-    // this.ingredientsChange.next();
+    this.getIngredientList();
   }
 
-  getIngredientsList() {
-    return this.meals.map((meal) => meal.ingredients);
+  ingredientList: {
+    name: string;
+    unit: string;
+    amount: number;
+  }[] = [];
+
+  getIngredientList() {
+    this.ingredientList = this.meals
+      .map((meal) => meal.ingredients)
+      .reduce((acc, curr) => acc.concat(curr))
+      .reduce((acc: any, curr) => {
+        const ingredient = acc.find((ingredient: any) => ingredient.name === curr.name);
+        ingredient ? (ingredient.amount += curr.amount) : acc.push(curr);
+        return acc;
+      }, []);
+
+    this.ingredientsChange.next(this.ingredientList);
+    return this.ingredientList;
   }
 }

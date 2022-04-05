@@ -7,15 +7,18 @@ import { PlannedService } from "src/app/shared/services/planned.service";
   styleUrls: ["./grocery-list.component.scss"],
 })
 export class GroceryListComponent implements OnInit {
-  ingredientsList: {
+  ingredientList: {
     name: string;
     unit: string;
-    amount: string;
-  }[][] = [];
+    amount: number;
+  }[] = [];
 
   constructor(private plannedService: PlannedService) {}
 
-  ngOnInit(): void {
-    this.ingredientsList = this.plannedService.getIngredientsList();
+  ngOnInit() {
+    this.ingredientList = this.plannedService.getIngredientList();
+    this.plannedService.ingredientsChange.subscribe((value) => {
+      this.ingredientList = value;
+    });
   }
 }
