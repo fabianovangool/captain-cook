@@ -21,11 +21,11 @@
   <app-modal>
     <app-button (click)="triggerModal()">x</app-button>
     <div class="select">
-      <select>
-        <option>Ooh yes i want to add...</option>
-        <option [id]="meal.id" *ngFor="let meal of meals">{{ meal.name }}</option>
+      <select (change)="selectChangeHandler($event)">
+        <option>Ooh yes, I want to add...</option>
+        <option [value]="meal.id" *ngFor="let meal of meals">{{ meal.name }}</option>
       </select>
-      <app-button>+</app-button>
+      <app-button (click)="addMeal(selectedMeal)">+</app-button>
     </div>
   </app-modal>
 </div>

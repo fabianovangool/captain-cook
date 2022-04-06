@@ -18,6 +18,8 @@ export class PlannerComponent implements OnInit {
 
   isModalOpen: boolean = false;
 
+  selectedMeal: number = 0;
+
   constructor(private plannedService: PlannedService, private modalService: ModalService) {}
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class PlannerComponent implements OnInit {
     this.modalService.triggerModal();
   }
 
-  addMeal() {
-    this.plannedService.addMeal();
+  addMeal(id: number) {
+    this.plannedService.addMeal(id);
   }
   removeMeal(id: number) {
     this.plannedService.removeMeal(id);
@@ -40,5 +42,9 @@ export class PlannerComponent implements OnInit {
 
   triggerModal() {
     this.modalService.triggerModal();
+  }
+
+  selectChangeHandler(event: Event) {
+    this.selectedMeal = Number((event.target as HTMLInputElement).value);
   }
 }
