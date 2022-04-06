@@ -5,10 +5,23 @@ import { ButtonComponent } from "./components/button/button.component";
 import { DropdownComponent } from "./components/dropdown/dropdown.component";
 import { AppRoutingModule } from "../app-routing.module";
 import { AsideComponent } from "./components/aside/aside.component";
+import { ModalComponent } from "./components/modal/modal.component";
 
 @NgModule({
-  declarations: [NavigationComponent, ButtonComponent, DropdownComponent, AsideComponent],
+  declarations: [
+    NavigationComponent,
+    ButtonComponent,
+    DropdownComponent,
+    AsideComponent,
+    ModalComponent,
+  ],
   imports: [CommonModule, AppRoutingModule],
-  exports: [NavigationComponent, ButtonComponent, DropdownComponent, AsideComponent],
+  exports: [
+    NavigationComponent,
+    ButtonComponent,
+    DropdownComponent,
+    AsideComponent,
+    ModalComponent,
+  ],
 })
 export class SharedModule {}

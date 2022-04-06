@@ -214,10 +214,23 @@ export class PlannedService {
     return this.meals;
   }
 
-  addMeal() {
-    this.meals = [...this.meals, this.extraMeal];
-    this.mealsChange.next(this.meals);
-    this.getIngredientList();
+  addedMeal = {} as
+    | {
+        id: number;
+        name: string;
+        portionSize: string;
+        image: string;
+        ingredients: { name: string; unit: string; amount: number }[];
+      }
+    | undefined;
+
+  addMeal(id: number) {
+    this.addedMeal = this.meals.find((meal) => meal.id == id);
+    if (this.addedMeal) {
+      this.meals = [this.addedMeal, ...this.meals];
+      this.mealsChange.next(this.meals);
+      this.getIngredientList();
+    }
   }
 
   removeMeal(id: number) {
