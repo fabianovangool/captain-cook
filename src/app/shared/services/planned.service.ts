@@ -178,35 +178,6 @@ export class PlannedService {
     },
   ];
 
-  extraMeal = {
-    id: 7,
-    name: "Saag Paneer",
-    portionSize: "2p",
-    image: "roast.jpeg",
-    ingredients: [
-      {
-        name: "Linguine",
-        unit: "grams",
-        amount: 300,
-      },
-      {
-        name: "Guanciale",
-        unit: "grams",
-        amount: 100,
-      },
-      {
-        name: "Pecorino",
-        unit: "grams",
-        amount: 100,
-      },
-      {
-        name: "Eggs",
-        unit: "whole",
-        amount: 3,
-      },
-    ],
-  };
-
   mealsChange: Subject<Planner[]> = new Subject<Planner[]>();
   ingredientsChange: Subject<GroceryList[]> = new Subject<GroceryList[]>();
 

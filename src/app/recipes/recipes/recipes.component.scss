@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 65vw;
+  height: 250px;
+}
+
+.aside {
+  background-color: white;
+  height: 100vh;
+  width: 34vw;
+  border-left: 4px dotted blue;
+}
+
+.title {
+  font-size: 30px;
+  font-family: roboto;
+  margin-left: 60px;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px dotted blue;
+  margin: 20px 0 0 20px;
+  width: 30vw;
+  height: 250px;
+}
+
+app-button {
+  margin-left: 45px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
+  opacity: 0.2;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+}

@@ -1,0 +1,25 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name: </label>
+  <input id="name" type="text" formControlName="name" />
+  <label for="portionSize">Portion size: </label>
+  <input id="portionSize" type="number" formControlName="portionSize" />
+  <label for="image">Image: </label>
+  <input id="image" type="text" formControlName="image" />
+  <label for="method">Method: </label>
+  <input id="method" type="text" formControlName="method" />
+  <div formArrayName="ingredients">
+    <p>Add ingredient</p>
+    <app-button (click)="addIngredient()">+</app-button>
+    <div *ngFor="let ingredient of ingredients.controls; let i = index">
+      <div [formGroupName]="i">
+        <label for="name">Name: </label>
+        <input id="name" type="text" />
+        <label for="unit">Unit: </label>
+        <input id="unit" type="text" />
+        <label for="amount">Amount: </label>
+        <input id="amount" type="number" />
+      </div>
+    </div>
+  </div>
+</form>
+<app-button type="submit">add</app-button>

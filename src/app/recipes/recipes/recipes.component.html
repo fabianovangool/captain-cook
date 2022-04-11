@@ -1,1 +1,30 @@
-<p>recipes works!</p>
+<div class="container">
+  <div class="tile">
+    <div class="add">
+      <app-button type="secondary" (click)="triggerModal()">+</app-button>
+    </div>
+    <app-tile
+      (click)="getIngredients(recipe.id)"
+      [id]="recipe.id"
+      [image]="recipe.image"
+      *ngFor="let recipe of recipes"
+    >
+    </app-tile>
+  </div>
+  <app-aside class="aside">
+    <p class="title">Recipe</p>
+    <app-ingredient-list
+      [name]="ingredient.name"
+      [amount]="ingredient.amount"
+      [unit]="ingredient.unit"
+      *ngFor="let ingredient of ingredientList"
+    ></app-ingredient-list>
+  </app-aside>
+</div>
+<div *ngIf="isModalOpen">
+  <div class="backdrop" (click)="triggerModal()"></div>
+  <app-modal [id]="2">
+    <app-button (click)="triggerModal()">x</app-button>
+    <app-recipe-form></app-recipe-form>
+  </app-modal>
+</div>
